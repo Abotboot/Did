@@ -17,6 +17,5 @@ android {
 }
 
 dependencies {
-    implementation project(':FtcRobotController')
     annotationProcessor 'org.firstinspires.ftc:Inspection:10.2.0'
 }
