@@ -1,0 +1,36 @@
+
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
+@TeleOp(name = "OmniDrive")
+public class OmniDrive extends LinearOpMode {
+
+    private DcMotor leftMotor;
+    private DcMotor rightMotor;
+    private DcMotor frontMotor;
+    private DcMotor backMotor;
+
+    @Override
+    public void runOpMode() {
+        leftMotor = hardwareMap.get(DcMotor.class, "left_motor");
+        rightMotor = hardwareMap.get(DcMotor.class, "right_motor");
+        frontMotor = hardwareMap.get(DcMotor.class, "front_motor");
+        backMotor = hardwareMap.get(DcMotor.class, "back_motor");
+
+        waitForStart();
+
+        while (opModeIsActive()) {
+            float move = -gamepad1.left_stick_y;
+            float turn = gamepad1.right_stick_x;
+            float strafe = gamepad1.left_stick_x;
+
+            leftMotor.setPower(move + turn + strafe);
+            rightMotor.setPower(move - turn - strafe);
+            frontMotor.setPower(move + turn - strafe);
+            backMotor.setPower(move - turn + strafe);
+        }
+    }
+}
