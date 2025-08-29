@@ -47,17 +47,17 @@ android {
          * @see <a href="https://developer.android.com/studio/build/index.html">Configure Your Build</a>
          * @see <a href="https://developer.android.com/studio/publish/versioning.html">Versioning Your App</a>
          */
-def manifestFile = project(':FtcRobotController').file('src/main/AndroidManifest.xml');
-def manifestText = manifestFile.getText()
-def vCodePattern = Pattern.compile("versionCode="(\d+(\.\d+)*)"")
-def matcher = vCodePattern.matcher(manifestText)
+        def manifestFile = project(':FtcRobotController').file('src/main/AndroidManifest.xml');
+        def manifestText = manifestFile.getText()
+        def vCodePattern = Pattern.compile(/versionCode="(d+(.d+)*)"/)
+        def matcher = vCodePattern.matcher(manifestText)
         matcher.find()
-def vCode = Integer.parseInt(matcher.group(1))
+        def vCode = Integer.parseInt(matcher.group(1))
 
-def vNamePattern = Pattern.compile("versionName="(.*)"")
+        def vNamePattern = Pattern.compile(/versionName="(.*)"/)
         matcher = vNamePattern.matcher(manifestText);
         matcher.find()
-def vName = matcher.group(1)
+        def vName = matcher.group(1)
 
         versionCode vCode
         versionName vName
