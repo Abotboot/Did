@@ -49,12 +49,12 @@ android {
          */
         def manifestFile = project(':FtcRobotController').file('src/main/AndroidManifest.xml');
         def manifestText = manifestFile.getText()
-        def vCodePattern = Pattern.compile(/versionCode="(d+(.d+)*)"/)
+        def vCodePattern = Pattern.compile(/android:versionCode="(d+)"/)
         def matcher = vCodePattern.matcher(manifestText)
         matcher.find()
         def vCode = Integer.parseInt(matcher.group(1))
 
-        def vNamePattern = Pattern.compile(/versionName="(.*)"/)
+        def vNamePattern = Pattern.compile(/android:versionName="(.*)"/)
         matcher = vNamePattern.matcher(manifestText);
         matcher.find()
         def vName = matcher.group(1)
